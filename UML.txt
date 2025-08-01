@@ -1,0 +1,105 @@
++--------------------+
+|      Task          |
++--------------------+
+| - name: String     |
+| - priority: int    |
+| - deadline: String |
+| - description: String |
++--------------------+
+| + getters/setters  |
++--------------------+
+
++----------------------+
+|     TaskNode         |
++----------------------+
+| - task: Task         |
+| - next: TaskNode     |
++----------------------+
+
++----------------------+
+|     TaskList         |   (Singly Linked List)
++----------------------+
+| - head: TaskNode     |
++----------------------+
+| + add(Task)          |
+| + remove(String)     |
+| + sort(...)          |
+| + search(...)        |
++----------------------+
+
++------------------------+
+|     HistoryNode        |
++------------------------+
+| - task: Task           |
+| - next: HistoryNode    |
+| - prev: HistoryNode    |
++------------------------+
+
++------------------------+
+|     HistoryList        |   (Doubly Linked List)
++------------------------+
+| - head: HistoryNode    |
+| - current: HistoryNode |
++------------------------+
+| + addView(Task)        |
+| + moveBack()           |
+| + moveForward()        |
++------------------------+
+
++---------------------+
+|     UndoStack       |
++---------------------+
+| - stack: Stack<Task>|
++---------------------+
+| + push(Task)        |
+| + pop()             |
+| + isEmpty()         |
++---------------------+
+
++---------------------+
+|    TodayQueue       |
++---------------------+
+| - queue: Queue<Task>|
++---------------------+
+| + enqueue(Task)     |
+| + dequeue()         |
+| + peek()            |
++---------------------+
+
++-------------------------------+
+|        TaskManager            |
++-------------------------------+
+| - taskList: TaskList          |
+| - undoStack: UndoStack        |
+| - history: HistoryList        |
+| - todayQueue: TodayQueue      |
++-------------------------------+
+| + addTask(Task)               |
+| + deleteTask(String)          |
+| + undoDelete()                |
+| + sortTasks(by: String)       |
+| + searchTasks(...)            |
+| + showTodayTasks()            |
++-------------------------------+
+
++-------------------------+
+|      Sorter             |
++-------------------------+
+| + mergeSort(...)        |
+| + quickSort(...)        |
+| + insertionSort(...)    |
++-------------------------+
+
++--------------------------+
+|       Searcher           |
++--------------------------+
+| + linearSearch(...)      |
+| + binarySearch(...)      |
++--------------------------+
+
++-------------------------+
+|     FileHandler         |
++-------------------------+
+| + saveTasks(List<Task>) |
+| + loadTasks()           |
++-------------------------+
