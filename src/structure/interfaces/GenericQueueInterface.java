@@ -1,7 +1,5 @@
 package src.structure.interfaces;
 
-
-
 /**
  * A generic interface for a queue data structure (FIFO - First In First Out).
  * 
@@ -14,7 +12,7 @@ public interface GenericQueueInterface<T> {
      * 
      * @param item the item to be added
      */
-    void enqueue(T item);
+    public void enqueue(T item);
 
     /**
      * Removes and returns the front item from the queue.
@@ -22,7 +20,7 @@ public interface GenericQueueInterface<T> {
      * @return the item removed from the front
      * @throws java.util.NoSuchElementException if the queue is empty
      */
-    T dequeue();
+    public T dequeue();
 
     /**
      * Returns the front item without removing it.
@@ -30,24 +28,24 @@ public interface GenericQueueInterface<T> {
      * @return the item at the front
      * @throws java.util.NoSuchElementException if the queue is empty
      */
-    T peek();
+    public T peek();
 
     /**
      * Checks whether the queue is empty.
      *
      * @return true if empty, false otherwise
      */
-    boolean isEmpty();
+    public boolean isEmpty();
 
     /**
      * Returns the number of elements in the queue.
      *
      * @return the size of the queue
      */
-    int size();
+    public int size();
 
     /**
      * Removes all elements from the queue.
      */
-    void clear();
+    public void clear();
 }
