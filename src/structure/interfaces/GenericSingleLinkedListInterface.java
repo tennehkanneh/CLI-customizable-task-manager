@@ -5,7 +5,7 @@ package src.structure.interfaces;
  *
  * @param <T> the type of elements held in this list
  */
-public interface GenericLinkedListInterface<T> {
+public interface GenericSingleLinkedListInterface<T> {
 
     /**
      * Adds an item to the end of the list.
