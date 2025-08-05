@@ -8,7 +8,7 @@ package src.structure.interfaces;
  * 
  * @param <T> the type of elements held in this queue
  */
-public interface GenericQueInterface<T> {
+public interface QueueInterface<T> {
 
     /**
      * Add an element to the rear of the queue.

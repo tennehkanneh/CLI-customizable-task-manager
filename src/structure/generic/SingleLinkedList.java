@@ -1,8 +1,8 @@
-package src.structure;
+package src.structure.generic;
 
-import src.structure.interfaces.GenericSingleLinkedListInterface;
+import src.structure.interfaces.SingleLinkedListInterface;
 
-public class GenericSingleLinkedList<T> implements GenericSingleLinkedListInterface<T> {
+public class SingleLinkedList<T> implements SingleLinkedListInterface<T> {
 
     @Override
     public void addAfter(T element) {

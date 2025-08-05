@@ -1,4 +1,4 @@
-package src.structure.genericstack;
+package src.structure.interfaces;
 
 /**
  * @author Tenneh Kanneh

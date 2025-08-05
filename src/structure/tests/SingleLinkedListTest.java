@@ -1,4 +1,6 @@
-package src.structure.genericsingle;
+package src.structure.tests;
+
+import src.structure.generic.SingleLinkedList;
 
 public class SingleLinkedListTest {
     
