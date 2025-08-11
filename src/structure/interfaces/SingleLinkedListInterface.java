@@ -91,7 +91,7 @@ public interface SingleLinkedListInterface<T> {
      * @return the element previously at the specified position
      * @throws IndexOutOfBoundsException if the index is out of range
      */
-    void set(int index, T element);
+    T set(int index, T element);
 
 
     /**
