@@ -15,6 +15,7 @@ public class SingleLinkedListTest {
     private static final Integer ELEMENT_A = 1;
 	private static final Integer ELEMENT_B = 2;
 	private static final Integer ELEMENT_C = 3;
+    private static final Integer ELEMENT_D = 4;
 	private static final Integer ELEMENT_X = -1;
 	private static final Integer ELEMENT_Z = -2;
 
@@ -35,7 +36,7 @@ public class SingleLinkedListTest {
 
 
     /********************************************************************************************************************************************
-	 * TESTS FOR 0-ELEMENT LIST
+	 * TESTS FOR 0-ELEMENT LIST []
 	 ********************************************************************************************************************************************/
 
 	@Test
@@ -171,7 +172,7 @@ public class SingleLinkedListTest {
 
 
     /********************************************************************************************************************************************
-	 * TESTS FOR 1-ELEMENT LIST
+	 * TESTS FOR 1-ELEMENT LIST [A]
 	 ********************************************************************************************************************************************/
 
     @Test
@@ -391,7 +392,7 @@ public class SingleLinkedListTest {
 
 
 	/********************************************************************************************************************************************
-	 * TESTS FOR 2-ELEMENT LIST
+	 * TESTS FOR 2-ELEMENT LIST [A, B]
 	 ********************************************************************************************************************************************/
 
 	@Test
@@ -514,7 +515,7 @@ public class SingleLinkedListTest {
 	   assertEquals(1, twoElementList.size(), "FAILED: size() for removeFirst() on twoElementList");
 	   assertEquals(ELEMENT_B, twoElementList.first(), "FAILED: first() for removeFirst() on twoElementList");
 	   assertEquals(ELEMENT_B, twoElementList.last(), "FAILED: last() for removeFirst() on twoElementList");
-	   assertEquals("[B]", twoElementList.toString(), "FAILED: toString() for removeFirst() on twoElementList");
+	   assertEquals("[2]", twoElementList.toString(), "FAILED: toString() for removeFirst() on twoElementList");
     }
 
 	@Test
@@ -525,7 +526,7 @@ public class SingleLinkedListTest {
 	   assertEquals(1, twoElementList.size(), "FAILED: size() for removeLast() on twoElementList");
        assertEquals(ELEMENT_A, twoElementList.first(), "FAILED: first() for removeLast() on twoElementList");
 	   assertEquals(ELEMENT_A, twoElementList.last(), "FAILED: last() for removeLast() on twoElementList");
-	   assertEquals("[A]", twoElementList.toString(), "FAILED: toString() for removeLast() on twoElementList");
+	   assertEquals("[1]", twoElementList.toString(), "FAILED: toString() for removeLast() on twoElementList");
     }
 
     @Test
@@ -536,7 +537,7 @@ public class SingleLinkedListTest {
 		assertEquals(1, twoElementList.size(), "FAILED: size() for remove() on twoElementList");
         assertEquals(ELEMENT_B, twoElementList.first(), "FAILED: first() for remove() on twoElementList");
         assertEquals(ELEMENT_B, twoElementList.last(), "FAILED: last() for remove() on twoElementList");
-		assertEquals("[B]", twoElementList.toString(), "FAILED: toString() for remove() on twoElementList");
+		assertEquals("[2]", twoElementList.toString(), "FAILED: toString() for remove() on twoElementList");
     }
 
 	@Test
@@ -547,7 +548,7 @@ public class SingleLinkedListTest {
 		assertEquals(1, twoElementList.size(), "FAILED: size() for remove() on twoElementList");
         assertEquals(ELEMENT_A, twoElementList.first(), "FAILED: first() for remove() on twoElementList");
         assertEquals(ELEMENT_A, twoElementList.last(), "FAILED: last() for remove() on twoElementList");
-		assertEquals("[A]", twoElementList.toString(), "FAILED: toString() for remove() on twoElementList");
+		assertEquals("[1]", twoElementList.toString(), "FAILED: toString() for remove() on twoElementList");
     }
 
 	@Test
@@ -568,7 +569,7 @@ public class SingleLinkedListTest {
 		assertEquals(1, twoElementList.size(), "FAILED: size() for remove() on twoElementList");
         assertEquals(ELEMENT_B, twoElementList.first(), "FAILED: first() for remove() on twoElementList");
         assertEquals(ELEMENT_B, twoElementList.last(), "FAILED: last() for remove() on twoElementList");
-		assertEquals("[B]", twoElementList.toString(), "FAILED: toString() for remove() on twoElementList");
+		assertEquals("[2]", twoElementList.toString(), "FAILED: toString() for remove() on twoElementList");
     }
 
 	@Test
@@ -579,7 +580,7 @@ public class SingleLinkedListTest {
 		assertEquals(1, twoElementList.size(), "FAILED: size() for remove() on twoElementList");
         assertEquals(ELEMENT_A, twoElementList.first(), "FAILED: first() for remove() on twoElementList");
         assertEquals(ELEMENT_A, twoElementList.last(), "FAILED: last() for remove() on twoElementList");
-		assertEquals("[A]", twoElementList.toString(), "FAILED: toString() for remove() on twoElementList");
+		assertEquals("[1]", twoElementList.toString(), "FAILED: toString() for remove() on twoElementList");
     }
 
 	@Test
@@ -664,13 +665,13 @@ public class SingleLinkedListTest {
 
 	@Test
     void test_indexOfB_twoElementList() {
-		assertEquals(1, emptyList.indexOf(ELEMENT_A), "FAILED: indexOf() on twoElementList");
+		assertEquals(1, emptyList.indexOf(ELEMENT_B), "FAILED: indexOf() on twoElementList");
 
 		assertFalse(twoElementList.isEmpty(), "FAILED: isEmpty() for indexOf() on twoElementList");
         assertEquals(1, twoElementList.size(), "FAILED: size() for indexOf() on twoElementList");
 		assertEquals(ELEMENT_A, twoElementList.first(), "FAILED: first() for indexOf() on twoElementList");
-		assertEquals(ELEMENT_A, twoElementList.last(), "FAILED: last() for indexOf() on twoElementList");
-        assertEquals("[1]", twoElementList.toString(), "FAILED: toString() for indexOf() on twoElementList");
+		assertEquals(ELEMENT_D, twoElementList.last(), "FAILED: last() for indexOf() on twoElementList");
+        assertEquals("[1, 2]", twoElementList.toString(), "FAILED: toString() for indexOf() on twoElementList");
     }
 
 	@Test
@@ -707,7 +708,405 @@ public class SingleLinkedListTest {
 
 
     /********************************************************************************************************************************************
-	 * TESTS FOR 3-ELEMENT LIST
+	 * TESTS FOR 3-ELEMENT LIST [A, B, C]
 	 ********************************************************************************************************************************************/
 
+	@Test
+    void test_threeElementList_state() {
+        assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() on threeElementList");
+    }
+
+    @Test
+    void test_addToFront_threeElementList() {
+		threeElementList.addToFront(ELEMENT_D);
+
+        assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for addToFront() on threeElementList");
+        assertEquals(4, threeElementList.size(), "FAILED: size() for addToFront() on threeElementList");
+		assertEquals(ELEMENT_D, threeElementList.first(), "FAILED: first() for addToFront() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for addToFront() on threeElementList");
+		assertEquals("[4, 1, 2, 3]", threeElementList.toString(), "FAILED: toString() for addToFront() on threeElementList");
+    }
+
+	@Test
+    void test_addToRear_threeElementList() {
+        threeElementList.addToRear(ELEMENT_D);
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for addToRear() on threeElementList");
+        assertEquals(4, threeElementList.size(), "FAILED: size() for addToRear() on emptyList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for addToRear() on threeElementList");
+		assertEquals(ELEMENT_D, threeElementList.last(), "FAILED: last() for addToRear() on threeElementList");
+		assertEquals("[1, 2, 3, 4]", threeElementList.toString(), "FAILED: toString() for addToRear() on threeElementList");
+    }
+
+	@Test
+    void test_addAfterA_threeElementList() {
+		threeElementList.add(ELEMENT_D, ELEMENT_A);
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for addAfter() on threeElementList");
+        assertEquals(4, threeElementList.size(), "FAILED: size() for addAfter() on emptyList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for addAfter() on threeElementList");
+		assertEquals(ELEMENT_B, threeElementList.last(), "FAILED: last() for addAfter() on threeElementList");
+		assertEquals("[1, 4, 3, 2]", threeElementList.toString(), "FAILED: toString() for addAfter() on threeElementList");
+    }
+
+	@Test
+    void test_addAfterB_threeElementList() {
+		threeElementList.add(ELEMENT_D, ELEMENT_B);
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for addAfter() on threeElementList");
+        assertEquals(4, threeElementList.size(), "FAILED: size() for addAfter() on emptyList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for addAfter() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for addAfter() on threeElementList");
+		assertEquals("[1, 2, 4, 3]", threeElementList.toString(), "FAILED: toString() for addAfter() on threeElementList");
+    }
+   
+	@Test
+    void test_addAfterC_threeElementList() {
+		threeElementList.add(ELEMENT_D, ELEMENT_B);
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for addAfter() on threeElementList");
+        assertEquals(4, threeElementList.size(), "FAILED: size() for addAfter() on emptyList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for addAfter() on threeElementList");
+		assertEquals(ELEMENT_D, threeElementList.last(), "FAILED: last() for addAfter() on threeElementList");
+		assertEquals("[1, 2, 3, 4]", threeElementList.toString(), "FAILED: toString() for addAfter() on threeElementList");
+    }
+ 
+	@Test
+    void test_addAfterX_threeElementList() {
+       assertThrows(NoSuchElementException.class, () -> emptyList.addAfter(ELEMENT_X, ELEMENT_Z));
+    }
+
+	@Test
+    void test_addElement_threeElementList() {
+        threeElementList.add(ELEMENT_D);
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for add() on threeElementList");
+        assertEquals(4, threeElementList.size(), "FAILED: size() for add() on emptyList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for add() on threeElementList");
+		assertEquals(ELEMENT_D, threeElementList.last(), "FAILED: last() for add() on threeElementList");
+		assertEquals("[1, 2, 3, 4]", threeElementList.toString(), "FAILED: toString() for add() on threeElementList");
+    }
+    
+	@Test
+    void test_addNeg1_threeElementList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> threeElementList.add(-1, ELEMENT_X));
+    }
+   
+	@Test
+    void test_add0_threeElementList() {
+        threeElementList.add(0, ELEMENT_D);
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for add() on threeElementList");
+        assertEquals(4, threeElementList.size(), "FAILED: size() for add() on threeElementList");
+		assertEquals(ELEMENT_D, threeElementList.first(), "FAILED: first() for add() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for add() on threeElementList");
+		assertEquals("[4, 1, 2, 3]", threeElementList.toString(), "FAILED: toString() for add() on threeElementList");
+    }
+  
+	@Test
+    void test_add1_threeElementList() {
+       threeElementList.add(1, ELEMENT_D);
+	   
+	   assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for add() on threeElementList");
+	   assertEquals(4, threeElementList.size(), "FAILED: size() for add() on threeElementList");
+	   assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for add() on threeElementList");
+	   assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for add() on threeElementList");
+	   assertEquals("[1, 4, 2, 3]", threeElementList.toString(), "FAILED: toString() for add() on threeElementList");
+    }
+   
+	@Test
+    void test_add2_threeElementList() {
+       threeElementList.add(2, ELEMENT_D);
+	   
+	   assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for add() on threeElementList");
+	   assertEquals(4, threeElementList.size(), "FAILED: size() for add() on threeElementList");
+	   assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for add() on threeElementList");
+	   assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for add() on threeElementList");
+	   assertEquals("[1, 2, 4, 3]", threeElementList.toString(), "FAILED: toString() for add() on threeElementList");
+    }
+    
+	@Test
+    void test_add3_threeElementList() {
+       threeElementList.add(3, ELEMENT_C);
+	   
+	   assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for add() on threeElementList");
+	   assertEquals(4, threeElementList.size(), "FAILED: size() for add() on threeElementList");
+	   assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for add() on threeElementList");
+	   assertEquals(ELEMENT_D, threeElementList.last(), "FAILED: last() for add() on threeElementList");
+	   assertEquals("[1, 2, 3, 4]", threeElementList.toString(), "FAILED: toString() for add() on threeElementList");
+    }
+    
+	@Test
+    void test_add4_threeElementList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> threeElementList.add(4, ELEMENT_X));
+    }
+    
+    @Test
+    void test_removeFirst_threeElementList() {
+       assertEquals(ELEMENT_A, threeElementList.removeFirst(), "FAILED: removeFirst() on threeElementList");
+
+	   assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for removeFirst() on threeElementList");
+	   assertEquals(2, threeElementList.size(), "FAILED: size() for removeFirst() on threeElementList");
+	   assertEquals(ELEMENT_B, threeElementList.first(), "FAILED: first() for removeFirst() on threeElementList");
+	   assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for removeFirst() on threeElementList");
+	   assertEquals("[2, 3]", threeElementList.toString(), "FAILED: toString() for removeFirst() on threeElementList");
+    }
+   
+	@Test
+    void test_removeLast_threeElementList() {
+       assertEquals(ELEMENT_C, threeElementList.removeLast(), "FAILED: removeLast() on threeElementList");
+
+	   assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for removeLast() on threeElementList");
+	   assertEquals(2, threeElementList.size(), "FAILED: size() for removeLast() on threeElementList");
+       assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for removeLast() on threeElementList");
+	   assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for removeLast() on threeElementList");
+	   assertEquals("[1, 2]", threeElementList.toString(), "FAILED: toString() for removeLast() on threeElementList");
+    }
+    
+    @Test
+    void test_removeA_threeElementList() {
+        assertEquals(ELEMENT_A, threeElementList.remove(ELEMENT_A), "FAILED: remove() on threeElementList");
+
+		assertTrue(threeElementList.isEmpty(), "FAILED: isEmpty() for remove() on threeElementList");
+		assertEquals(2, threeElementList.size(), "FAILED: size() for remove() on threeElementList");
+        assertEquals(ELEMENT_B, threeElementList.first(), "FAILED: first() for remove() on threeElementList");
+        assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for remove() on threeElementList");
+		assertEquals("[2, 3]", threeElementList.toString(), "FAILED: toString() for remove() on threeElementList");
+    }
+    
+	@Test
+    void test_removeB_threeElementList() {
+        assertEquals(ELEMENT_B, threeElementList.remove(ELEMENT_B), "FAILED: remove() on threeElementList");
+
+		assertTrue(threeElementList.isEmpty(), "FAILED: isEmpty() for remove() on threeElementList");
+		assertEquals(2, threeElementList.size(), "FAILED: size() for remove() on threeElementList");
+        assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for remove() on threeElementList");
+        assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for remove() on threeElementList");
+		assertEquals("[1, 3]", threeElementList.toString(), "FAILED: toString() for remove() on threeElementList");
+    }
+   
+	@Test
+    void test_removeC_threeElementList() {
+        assertEquals(ELEMENT_C, threeElementList.remove(ELEMENT_B), "FAILED: remove() on threeElementList");
+
+		assertTrue(threeElementList.isEmpty(), "FAILED: isEmpty() for remove() on threeElementList");
+		assertEquals(2, threeElementList.size(), "FAILED: size() for remove() on threeElementList");
+        assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for remove() on threeElementList");
+        assertEquals(ELEMENT_B, threeElementList.last(), "FAILED: last() for remove() on threeElementList");
+		assertEquals("[1, 2]", threeElementList.toString(), "FAILED: toString() for remove() on threeElementList");
+    }
+    
+	@Test
+    void test_removeX_threeElementList() {
+        assertThrows(NoSuchElementException.class, () -> threeElementList.remove(ELEMENT_X));
+    }
+  
+    @Test
+    void test_removeNeg1_threeElementList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> threeElementList.remove(-1));
+    }
+    
+	@Test
+    void test_remove0_threeElementList() {
+		assertEquals(ELEMENT_A, threeElementList.remove(0), "FAILED: remove() on threeElementList");
+		
+		assertTrue(threeElementList.isEmpty(), "FAILED: isEmpty() for remove() on threeElementList");
+		assertEquals(2, threeElementList.size(), "FAILED: size() for remove() on threeElementList");
+        assertEquals(ELEMENT_B, threeElementList.first(), "FAILED: first() for remove() on threeElementList");
+        assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for remove() on threeElementList");
+		assertEquals("[2, 3]", threeElementList.toString(), "FAILED: toString() for remove() on threeElementList");
+    }
+    
+	@Test
+    void test_remove1_threeElementList() {
+		assertEquals(ELEMENT_B, threeElementList.remove(1), "FAILED: remove() on threeElementList");
+		
+		assertTrue(threeElementList.isEmpty(), "FAILED: isEmpty() for remove() on threeElementList");
+		assertEquals(2, threeElementList.size(), "FAILED: size() for remove() on threeElementList");
+        assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for remove() on threeElementList");
+        assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for remove() on threeElementList");
+		assertEquals("[1, 3]", threeElementList.toString(), "FAILED: toString() for remove() on threeElementList");
+    }
+    
+	@Test
+    void test_remove2_threeElementList() {
+		assertEquals(ELEMENT_C, threeElementList.remove(1), "FAILED: remove() on threeElementList");
+		
+		assertTrue(threeElementList.isEmpty(), "FAILED: isEmpty() for remove() on threeElementList");
+		assertEquals(2, threeElementList.size(), "FAILED: size() for remove() on threeElementList");
+        assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for remove() on threeElementList");
+        assertEquals(ELEMENT_B, threeElementList.last(), "FAILED: last() for remove() on threeElementList");
+		assertEquals("[1,2]", threeElementList.toString(), "FAILED: toString() for remove() on threeElementList");
+    }
+  
+	@Test
+    void test_remove3_threeElementList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> threeElementList.remove(3));
+    }
+   
+	@Test
+    void test_setNeg1_threeElementList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> threeElementList.set(-1, ELEMENT_X));
+    }
+    
+	@Test
+    void test_set0_threeElementList() {
+        threeElementList.set(0, ELEMENT_D);
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for set() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for set() on threeElementList");
+		assertEquals(ELEMENT_D, threeElementList.first(), "FAILED: first() for set() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for set() on threeElementList");
+		assertEquals("[4, 2, 3]", threeElementList.toString(), "FAILED: toString() for set() on threeElementList");
+    }
+ 
+	@Test
+    void test_set1_threeElementList() {
+        threeElementList.set(1, ELEMENT_D);
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for set() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for set() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for set() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for set() on threeElementList");
+		assertEquals("[1, 4, 3]", threeElementList.toString(), "FAILED: toString() for set() on threeElementList");
+    }
+    
+	@Test
+    void test_set2_threeElementList() {
+        threeElementList.set(2, ELEMENT_D);
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for set() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for set() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for set() on threeElementList");
+		assertEquals(ELEMENT_D, threeElementList.last(), "FAILED: last() for set() on threeElementList");
+		assertEquals("[1, 2, 4]", threeElementList.toString(), "FAILED: toString() for set() on threeElementList");
+    }
+    
+	@Test
+    void test_set3_threeElementList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> threeElementList.set(1, ELEMENT_X));
+    }
+    
+	@Test
+    void test_getNeg1_threeElementList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> threeElementList.get(-1));
+    }
+   
+	@Test
+    void test_get0_threeElementList() {
+        assertEquals(ELEMENT_A, threeElementList.get(0));
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for get() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for get() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for get() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for get() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for get() on threeElementList");
+    }
+  
+	@Test
+    void test_get1_threeElementList() {
+        assertEquals(ELEMENT_B, threeElementList.get(1));
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for get() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for get() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for get() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for get() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for get() on threeElementList");
+    }
+   
+	@Test
+    void test_get2_threeElementList() {
+        assertEquals(ELEMENT_C, threeElementList.get(2));
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for get() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for get() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for get() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for get() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for get() on threeElementList");
+    }
+   
+	@Test
+    void test_get3_threeElementList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> threeElementList.get(3));
+    }
+    
+    @Test
+    void test_indexOfA_threeElementList() {
+		assertEquals(0, emptyList.indexOf(ELEMENT_A), "FAILED: indexOf() on threeElementList");
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for indexOf() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for indexOf() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for indexOf() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for indexOf() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for indexOf() on threeElementList");
+    }
+    
+	@Test
+    void test_indexOfB_threeElementList() {
+		assertEquals(1, emptyList.indexOf(ELEMENT_B), "FAILED: indexOf() on threeElementList");
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for indexOf() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for indexOf() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for indexOf() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for indexOf() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for indexOf() on threeElementList");
+    }
+   
+	@Test
+    void test_indexOfC_threeElementList() {
+		assertEquals(2, emptyList.indexOf(ELEMENT_C), "FAILED: indexOf() on threeElementList");
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for indexOf() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for indexOf() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for indexOf() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for indexOf() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for indexOf() on threeElementList");
+    }
+ 
+	@Test
+    void test_indexOfX_threeElementList() {
+		assertEquals(-1, emptyList.indexOf(ELEMENT_X), "FAILED: indexOf() on threeElementList");
+    }
+    
+	@Test
+    void test_containsA_threeElementList() {
+        assertEquals(emptyList.contains(ELEMENT_A), "FAILED: contains() threeElementList");
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for contains() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for contains() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for contains() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for contains() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for contains() on threeElementList");
+    }
+    
+	@Test
+    void test_containsB_threeElementList() {
+        assertEquals(emptyList.contains(ELEMENT_B), "FAILED: contains() threeElementList");
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for contains() on threeElementList");
+        assertEquals(3, threeElementList.size(), "FAILED: size() for contains() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for contains() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for contains() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for contains() on threeElementList");
+    }
+     
+	@Test
+    void test_containsC_threeElementList() {
+        assertEquals(emptyList.contains(ELEMENT_C), "FAILED: contains() threeElementList");
+
+		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for contains() on threeElementList");
+        assertEquals(2, threeElementList.size(), "FAILED: size() for contains() on threeElementList");
+		assertEquals(ELEMENT_A, threeElementList.first(), "FAILED: first() for contains() on threeElementList");
+		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for contains() on threeElementList");
+        assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for contains() on threeElementList");
+    }
+    //TODO
+	@Test
+    void test_containsX_threeElementList() {
+        assertEquals(false, emptyList.contains(ELEMENT_X), "FAILED: contains() threeElementList");
+    }
 }
