@@ -27,10 +27,13 @@ public class SingleLinkedListTest {
         singleElementList = new SingleLinkedList<>();
         singleElementList.add(ELEMENT_A);
 
-		twoElementList = singleElementList;
+        twoElementList = new SingleLinkedList<>();
+        twoElementList.add(ELEMENT_A);
         twoElementList.add(ELEMENT_B);
 
-		threeElementList = twoElementList;
+        threeElementList = new SingleLinkedList<>();
+        threeElementList.add(ELEMENT_A);
+        threeElementList.add(ELEMENT_B);
         threeElementList.add(ELEMENT_C);
     }
 
@@ -168,6 +171,13 @@ public class SingleLinkedListTest {
 	@Test
     void test_containsX_emptyList() {
         assertEquals(false, emptyList.contains(ELEMENT_X), "FAILED: contains() emptyList");
+    }
+
+    @Test
+    void test_clear_emptyList() {
+        emptyList.clear();
+
+        assertEquals(emptyList, emptyList, "FAILED: clear() on emptyList");
     }
 
 
@@ -388,6 +398,13 @@ public class SingleLinkedListTest {
 	@Test
     void test_containsX_singleElementList() {
         assertEquals(false, emptyList.contains(ELEMENT_X), "FAILED: contains() singleElementList");
+    }
+
+    @Test
+    void test_clear_singleElementList() {
+        singleElementList.clear();
+
+        assertEquals(emptyList, singleElementList, "FAILED: clear() on singleElementList");
     }
 
 
@@ -704,6 +721,13 @@ public class SingleLinkedListTest {
 	@Test
     void test_containsX_twoElementList() {
         assertEquals(false, emptyList.contains(ELEMENT_X), "FAILED: contains() twoElementList");
+    }
+
+    @Test
+    void test_clear_twoElementList() {
+        twoElementList.clear();
+
+        assertEquals(emptyList, twoElementList, "FAILED: clear() on twoElementList");
     }
 
 
@@ -1104,9 +1128,16 @@ public class SingleLinkedListTest {
 		assertEquals(ELEMENT_C, threeElementList.last(), "FAILED: last() for contains() on threeElementList");
         assertEquals("[1, 2, 3]", threeElementList.toString(), "FAILED: toString() for contains() on threeElementList");
     }
-    //TODO
+   
 	@Test
     void test_containsX_threeElementList() {
         assertEquals(false, emptyList.contains(ELEMENT_X), "FAILED: contains() threeElementList");
+    }
+
+    @Test
+    void test_clear_threeElementList() {
+        threeElementList.clear();
+
+        assertEquals(emptyList, threeElementList, "FAILED: clear() on threeElementList");
     }
 }
