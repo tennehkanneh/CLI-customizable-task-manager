@@ -3,13 +3,13 @@ package src.structure.interfaces;
 /**
  * @author Tenneh Kanneh
  * Date: Fri Aug  1 18:44:05 MDT 2025
- * A generic interface for a singly linked list data structure.
+ * A generic interface for a double linked list data structure.
  *
  * @param <T> the type of elements held in this list
  */
 
 
-public interface GenericSingleLinkedListInterface<T> {
+public interface DoubleLinkedListInterface<T> {
     
     /**
      * Adds an element to the front of the list.

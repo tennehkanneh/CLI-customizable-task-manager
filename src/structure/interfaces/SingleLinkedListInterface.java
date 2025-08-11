@@ -3,13 +3,13 @@ package src.structure.interfaces;
 /**
  * @author Tenneh Kanneh
  * Date: Fri Aug  1 18:44:05 MDT 2025
- * A generic interface for a double linked list data structure.
+ * A generic interface for a singly linked list data structure.
  *
  * @param <T> the type of elements held in this list
  */
 
 
-public interface GenericDoubleLinkedListInterface<T> {
+public interface SingleLinkedListInterface<T> {
     
     /**
      * Adds an element to the front of the list.
@@ -43,11 +43,12 @@ public interface GenericDoubleLinkedListInterface<T> {
 
 
     /**
-     * Adds the specified element after the current (or a specific) element.
+     * Adds the specified new element after the specific element.
      *
-     * @param element the element to add after
+     * @param newElement the element to add after
+     * @param element the existing element
      */
-    void addAfter(T element);
+    void addAfter(T newElement, T element);
 
 
     /**
@@ -82,8 +83,15 @@ public interface GenericDoubleLinkedListInterface<T> {
      */
     T remove(int index);
 
-
-    void set(int index, T element);
+    /**
+     * Replaces the element at the specified position in this list with the specified element.
+     * 
+     * @param index the index of the element to replace
+     * @param element the element to be stored at the specified position
+     * @return the element previously at the specified position
+     * @throws IndexOutOfBoundsException if the index is out of range
+     */
+    T set(int index, T element);
 
 
     /**

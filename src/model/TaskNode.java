@@ -1,4 +1,4 @@
-package src.structure;
+package src.model;
 
 public class TaskNode {
     

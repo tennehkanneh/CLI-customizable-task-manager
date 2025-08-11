@@ -1,4 +1,4 @@
-package src.structure.interfaces;
+package src.structure;
 
 /**
  * @author Tenneh Kanneh

@@ -8,7 +8,7 @@ package src.structure.interfaces;
  *
  * @param <T> the type of elements held in this stack
  */
-public interface GenericStackInterface<T> {
+public interface StackInterface<T> {
     
     /**
      * Adds the specified element to the top of the stack.
