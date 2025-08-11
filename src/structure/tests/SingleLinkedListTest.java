@@ -1,126 +1,349 @@
 package src.structure.tests;
 
 import src.structure.generic.SingleLinkedList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.util.Iterator;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.NoSuchElementException;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SingleLinkedListTest {
+	private SingleLinkedList<Integer> emptyList;
+    private SingleLinkedList<Integer> oneElementList;
+	private SingleLinkedList<Integer> twoElementList;
+	private SingleLinkedList<Integer> threeElementList;
+
     private static final Integer ELEMENT_A = 1;
 	private static final Integer ELEMENT_B = 2;
 	private static final Integer ELEMENT_C = 3;
-	private static final Integer ELEMENT_D = 4;
 	private static final Integer ELEMENT_X = -1;
 	private static final Integer ELEMENT_Z = -2;
 
    
+    @BeforeEach
+    void setUp() {
+        emptyList = new SingleLinkedList<>();
+
+        oneElementList = new SingleLinkedList<>();
+        oneElementList.add(ELEMENT_A);
+
+		twoElementList = oneElementList;
+        twoElementList.add(ELEMENT_B);
+
+		threeElementList = twoElementList;
+        threeElementList.add(ELEMENT_C);
+    }
+
+
     /////////////////////////////////
 	//XXX Tests for 0-element list
 	/////////////////////////////////
+	@Test
+    void test_isEmpty_state() {
+        assertTrue(emptyList.isEmpty(), "FAILED: isEmpty() on emptyList");
+        assertEquals(0, emptyList.size(), "FAILED: size() on emptyList");
+        assertEquals("[]", emptyList.toString(), "FAILED: toString() on emptyList");
+    }
+
+    @Test
+    void test_addToFront_emptyList() {
+		emptyList.addToFront(ELEMENT_A);
+
+        assertFalse(emptyList.isEmpty(), "FAILED: isEmpty() for addToFront() on emptyList");
+        assertEquals(1, emptyList.size(), "FAILED: size() for addToFront() on emptyList");
+		assertEquals(ELEMENT_A, emptyList.first(), "FAILED: first() for addToFront() on emptyList");
+		assertEquals(ELEMENT_A, emptyList.last(), "FAILED: last() for addToFront() on emptyList");
+		assertEquals("[A]", emptyList.toString(), "FAILED: toString() for addToFront() on emptyList");
+    }
+
+	@Test
+    void test_addToRear_emptyList() {
+        emptyList.addToRear(ELEMENT_A);
+
+		assertFalse(emptyList.isEmpty(), "FAILED: isEmpty() for addToRear() on emptyList");
+        assertEquals(1, emptyList.size(), "FAILED: size() for addToRear() on emptyList");
+		assertEquals(ELEMENT_A, emptyList.first(), "FAILED: first() for addToRear() on emptyList");
+		assertEquals(ELEMENT_A, emptyList.last(), "FAILED: last() for addToRear() on emptyList");
+		assertEquals("[A]", emptyList.toString(), "FAILED: toString() for addToRear() on emptyList");
+    }
+
+	@Test
+    void test_addToAfter_emptyList() {
+       assertThrows(NoSuchElementException.class, () -> emptyList.addAfter(ELEMENT_X, ELEMENT_Z));
+    }
+
+	@Test
+    void test_addElement_emptyList() {
+        emptyList.add(ELEMENT_A);
+
+		assertFalse(emptyList.isEmpty(), "FAILED: isEmpty() for add() on emptyList");
+        assertEquals(1, emptyList.size(), "FAILED: size() for add() on emptyList");
+		assertEquals(ELEMENT_A, emptyList.first(), "FAILED: first() for add() on emptyList");
+		assertEquals(ELEMENT_A, emptyList.last(), "FAILED: last() for add() on emptyList");
+		assertEquals("[A]", emptyList.toString(), "FAILED: toString() for add() on emptyList");
+    }
+
+	@Test
+    void test_addNeg1_emptyList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.add(-1, ELEMENT_X));
+    }
+
+	 @Test
+    void test_add0_emptyList() {
+        emptyList.add(0, ELEMENT_A);
+
+		assertFalse(emptyList.isEmpty(), "FAILED: isEmpty() for add() on emptyList");
+        assertEquals(1, emptyList.size(), "FAILED: size() for add() on emptyList");
+		assertEquals(ELEMENT_A, emptyList.first(), "FAILED: first() for add() on emptyList");
+		assertEquals(ELEMENT_A, emptyList.last(), "FAILED: last() for add() on emptyList");
+		assertEquals("[A]", emptyList.toString(), "FAILED: toString() for add() on emptyList");
+    }
+
+	@Test
+    void test_add1_emptyList() {
+       assertThrows(IndexOutOfBoundsException.class, () -> emptyList.add(1, ELEMENT_X));
+    }
+
+    @Test
+    void test_removeFirst_emptyList() {
+       assertThrows(NoSuchElementException.class, () -> emptyList.removeFirst());
+    }
+
+	@Test
+    void test_removeLast_emptyList() {
+       assertThrows(NoSuchElementException.class, () -> emptyList.removeLast());
+    }
+
+    @Test
+    void test_removeElement_emptyList() {
+        assertThrows(NoSuchElementException.class, () -> emptyList.remove(ELEMENT_X));
+    }
+
+    @Test
+    void test_removeNeg1_emptyList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.remove(-1));
+    }
+
+	@Test
+    void test_remove0_emptyList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.remove(0));
+    }
+
+	@Test
+    void test_setNeg1_emptyList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.set(-1, ELEMENT_X));
+    }
+
+	@Test
+    void test_set0_emptyList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.set(0, ELEMENT_X));
+    }
+
+	@Test
+    void test_getNeg1_emptyList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(-1));
+    }
+
+	@Test
+    void test_get0_emptyList() {
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(0));
+    }
+
+    @Test
+    void test_indexOf_emptyList() {
+		assertEquals(-1, emptyList.indexOf(ELEMENT_X), "FAILED: indexOf() on emptyList");
+    }
+
+	 @Test
+    void test_first_emptyList() {
+        assertThrows(NoSuchElementException.class, () -> emptyList.first());
+    }
+
+    @Test
+    void test_last_emptyList() {
+        assertThrows(NoSuchElementException.class, () -> emptyList.last());
+    }
+
+	@Test
+    void test_contains_emptyList() {
+        assertEquals(false, emptyList.contains(ELEMENT_X), "FAILED: contains() emptyList");
+    }
+
+
+    //////////////////////////////////
+	//XXX Tests for 1-element list
+	//////////////////////////////////
+	@Test
+    void singleElmentList() {
+		assertThrows(NoException.class, () -> emptyList.addToFront(ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.addToRear(ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.addAfter(oneElmentList.first(), ELEMENT_X));
+		assertThrows(NoException.class, () -> emptyList.addAfter(ELEMENT_X, ELEMENT_Z));
+        assertThrows(NoException.class, () -> emptyList.add(ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.add(-1, ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.add(0, ELEMENT_X));
+		assertThrows(NoException.class, () -> emptyList.add(1, ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.add(2, ELEMENT_X));
+        assertEquals(emptyList.first(), () -> emptyList.removeFirst());
+        assertEquals(emptyList.last(), () -> emptyList.removeLast());
+        assertThrows(emptyList.last(), () -> emptyList.remove(emptyList.first()));
+		assertThrows(NoSuchElementException.class, () -> emptyList.remove(ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.remove(-1));
+        assertThrows(emptyList.last(), () -> emptyList.remove(0));
+		assertThrows(IndexOutOfBoundsException.class, () -> emptyList.remove(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.set(-1, ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.set(0, ELEMENT_X));
+		assertThrows(IndexOutOfBoundsException.class, () -> emptyList.set(1, ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(0));
+		assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(1));
+		assertEquals(0, () -> emptyList.indexOf(emptyList.last()));
+        assertEquals(-1, () -> emptyList.indexOf(ELEMENT_X));
+        assertThrows(emptyList.last(), () -> emptyList.first());
+        assertThrows(emptyList.first(), () -> emptyList.last());
+        assertEquals(true, () -> emptlyList.contains(emptyList.last()));
+		assertEquals(false, () -> emptyList.contains(ELEMENT_X));
+		assertEquals(false, () -> emptlyList.isEmpty());
+		assertEquals(1, () -> emptlyList.size());
+		assertEquals("[A]", () -> emptlyList.toString());
+    }
+
+    @Test
+    void testSingleElementListInitialState() {
+        assertFalse(oneElementList.isEmpty(), "List should not be empty.");
+        assertEquals(1, oneElementList.size(), "Size should be 1.");
+        assertEquals(ELEMENT_A, oneElementList.first(), "First element should be ELEMENT_A.");
+    }
+
+    @Test
+    void testAddToRearOnSingleElementList() {
+        Integer newElement = 2;
+        oneElementList.addToRear(newElement);
+        assertEquals(2, oneElementList.size(), "Size should be 2 after adding to rear.");
+        assertEquals(newElement, oneElementList.last(), "The new element should be the last one.");
+    }
     
     @Test
-    void _createList_emptyList() {
-        SingleLinkedList<Integer> list = new SingleLinkedList<Integer>();
-
-        assertThrows(NoException.class, () -> {
-            list.addToFront(ELEMENT_X);
-        });
-
-        assertThrows(NoException.class, () -> {
-            list.addToRear(ELEMENT_X);
-        });
-
-        assertThrows(NoSuchElementException.class, () -> {
-            list.addAfter(ELEMENT_X, ELEMENT_Z);
-        });
-
-        assertThrows(NoException.class, () -> {
-            list.add(ELEMENT_X);
-        });
-
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.add(-1, ELEMENT_X);
-        });
-
-        assertThrows(NoException.class, () -> {
-            list.add(0, ELEMENT_X);
-        });
-
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.add(1, ELEMENT_X);
-        });
-
-        assertThrows(NoSuchElementException.class, () -> {
-            list.removeFirst();
-        });
-
-        assertThrows(NoSuchElementException.class, () -> {
-            list.removeLast();
-        });
-
-        assertThrows(NoSuchElementException.class, () -> {
-            list.remove(ELEMENT_X);
-        });
-
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.remove(-1);
-        });
-
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.remove(0);
-        });
-
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.set(-1, ELEMENT_X);
-        });
-
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.set(0, ELEMENT_X);
-        });
-
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.get(-1);
-        });
-
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.get(0);
-        });
-
-        assertEquals(-1, () -> {
-            list.indexOf(ELEMENT_X);
-        });
-
-        assertThrows(NoSuchElementException.class, () -> {
-            list.first();
-        });
-
-        assertThrows(NoSuchElementException.class, () -> {
-            list.last();
-        });
-        
-        assertEquals(false, () -> {
-            list.contains(ELEMENT_X);
-        });
-
-        assertEquals(true, () -> {
-            list.isEmpty();
-        });
-
-        assertEquals(0, () -> {
-            list.size();
-        });
-        
-            assertEquals("", () -> {
-            list.toString();
-        });
-		
+    void testRemoveFirstOnSingleElementList() {
+        Integer removedElement = oneElementList.removeFirst();
+        assertEquals(ELEMENT_A, removedElement, "removeFirst should return the correct element.");
+        assertTrue(oneElementList.isEmpty(), "List should be empty after removing the only element.");
+        assertEquals(0, oneElementList.size(), "Size should be 0.");
     }
+    
+    @Test
+    void testRemoveLastOnSingleElementList() {
+        Integer removedElement = oneElementList.removeLast();
+        assertEquals(ELEMENT_A, removedElement, "removeLast should return the correct element.");
+        assertTrue(oneElementList.isEmpty(), "List should be empty after removing the only element.");
+        assertEquals(0, oneElementList.size(), "Size should be 0.");
+    }
+    
+    @Test
+    void testRemoveByIndexOnSingleElementList() {
+        Integer removedElement = oneElementList.remove(0);
+        assertEquals(ELEMENT_A, removedElement, "remove(0) should return the correct element.");
+        assertTrue(oneElementList.isEmpty(), "List should be empty after removing the only element.");
+        assertEquals(0, oneElementList.size(), "Size should be 0.");
+    }
+    
+    @Test
+    void testSetOnSingleElementList() {
+        Integer newElement = 99;
+        oneElementList.set(0, newElement);
+        assertEquals(newElement, oneElementList.first(), "set(0, newElement) should update the first element.");
+        assertEquals(1, oneElementList.size(), "Size should remain 1.");
+    }
+
+    @Test
+    void testGetOnSingleElementList() {
+        assertEquals(ELEMENT_A, oneElementList.get(0), "get(0) should return the correct element.");
+    }
+    
+    @Test
+    void testIndexOfOnSingleElementList() {
+        assertEquals(0, oneElementList.indexOf(ELEMENT_A), "indexOf should find ELEMENT_A at index 0.");
+        assertEquals(-1, oneElementList.indexOf(ELEMENT_X), "indexOf should return -1 for a non-existent element.");
+    }
+
+    
+
+	/////////////////////////////////
+	//XXX Tests for 2-element list
+	/////////////////////////////////
+	@Test
+    void twoElementList() {
+		assertThrows(NoException.class, () -> emptyList.addToFront(ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.addToRear(ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.addAfter(oneElmentList.first(), ELEMENT_X));
+		assertThrows(NoException.class, () -> emptyList.addAfter(ELEMENT_X, ELEMENT_Z));
+        assertThrows(NoException.class, () -> emptyList.add(ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.add(-1, ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.add(0, ELEMENT_X));
+		assertThrows(NoException.class, () -> emptyList.add(1, ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.add(2, ELEMENT_X));
+        assertEquals(emptyList.first(), () -> emptyList.removeFirst());
+        assertEquals(emptyList.last(), () -> emptyList.removeLast());
+        assertThrows(emptyList.last(), () -> emptyList.remove(emptyList.first()));
+		assertThrows(NoSuchElementException.class, () -> emptyList.remove(ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.remove(-1));
+        assertThrows(emptyList.last(), () -> emptyList.remove(0));
+		assertThrows(IndexOutOfBoundsException.class, () -> emptyList.remove(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.set(-1, ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.set(0, ELEMENT_X));
+		assertThrows(IndexOutOfBoundsException.class, () -> emptyList.set(1, ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(0));
+		assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(1));
+		assertEquals(0, () -> emptyList.indexOf(emptyList.last()));
+        assertEquals(-1, () -> emptyList.indexOf(ELEMENT_X));
+        assertThrows(emptyList.last(), () -> emptyList.first());
+        assertThrows(emptyList.first(), () -> emptyList.last());
+        assertEquals(true, () -> emptlyList.contains(emptyList.last()));
+		assertEquals(false, () -> emptyList.contains(ELEMENT_X));
+		assertEquals(false, () -> emptlyList.isEmpty());
+		assertEquals(1, () -> emptlyList.size());
+		assertEquals("[A]", () -> emptlyList.toString());
+    }
+
+    //////////////////////////////////
+	//XXX Tests for 3-element list
+	//////////////////////////////////
+	@Test
+    void threeElementList() {
+		assertThrows(NoException.class, () -> emptyList.addToFront(ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.addToRear(ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.addAfter(oneElmentList.first(), ELEMENT_X));
+		assertThrows(NoException.class, () -> emptyList.addAfter(ELEMENT_X, ELEMENT_Z));
+        assertThrows(NoException.class, () -> emptyList.add(ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.add(-1, ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.add(0, ELEMENT_X));
+		assertThrows(NoException.class, () -> emptyList.add(1, ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.add(2, ELEMENT_X));
+        assertEquals(emptyList.first(), () -> emptyList.removeFirst());
+        assertEquals(emptyList.last(), () -> emptyList.removeLast());
+        assertThrows(emptyList.last(), () -> emptyList.remove(emptyList.first()));
+		assertThrows(NoSuchElementException.class, () -> emptyList.remove(ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.remove(-1));
+        assertThrows(emptyList.last(), () -> emptyList.remove(0));
+		assertThrows(IndexOutOfBoundsException.class, () -> emptyList.remove(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.set(-1, ELEMENT_X));
+        assertThrows(NoException.class, () -> emptyList.set(0, ELEMENT_X));
+		assertThrows(IndexOutOfBoundsException.class, () -> emptyList.set(1, ELEMENT_X));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(0));
+		assertThrows(IndexOutOfBoundsException.class, () -> emptyList.get(1));
+		assertEquals(0, () -> emptyList.indexOf(emptyList.last()));
+        assertEquals(-1, () -> emptyList.indexOf(ELEMENT_X));
+        assertThrows(emptyList.last(), () -> emptyList.first());
+        assertThrows(emptyList.first(), () -> emptyList.last());
+        assertEquals(true, () -> emptlyList.contains(emptyList.last()));
+		assertEquals(false, () -> emptyList.contains(ELEMENT_X));
+		assertEquals(false, () -> emptlyList.isEmpty());
+		assertEquals(1, () -> emptlyList.size());
+		assertEquals("[A]", () -> emptlyList.toString());
+    }
+   
+	
 
     /** Scenario #02: [] -> addToFront(A) -> [A] 
 	 * @return [A] after addToFront(A)
@@ -129,10 +352,8 @@ public class SingleLinkedListTest {
 		IndexedUnsortedList<Integer> list = newList();
 		list.addToFront(ELEMENT_A);
 		return list;
-
-        //////////////////////////////////
-	//XXX Tests for 1-element list
-	//////////////////////////////////
+	}
+    
 	
 	/** Run all tests on scenarios resulting in a single element list
 	 * @param scenario lambda reference to scenario builder method
@@ -215,10 +436,8 @@ public class SingleLinkedListTest {
 		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
 		list.addToFront(ELEMENT_B);
 		return list;
-
-        /////////////////////////////////
-	//XXX Tests for 2-element list
-	/////////////////////////////////
+	}
+    
 	
 	/** Run all tests on scenarios resulting in a two-element list
 	 * @param scenario lambda reference to scenario builder method
@@ -454,10 +673,8 @@ public class SingleLinkedListTest {
         IndexedUnsortedList<Integer> list = AB_addAfterCB_ABC();
         list.removeFirst();
         return list;
-
-        //////////////////////////////////
-	//XXX Tests for 3-element list
-	//////////////////////////////////
+	}
+    
 	
 	/** Run all tests on scenarios resulting in a three-element list
 	 * @param scenario lambda reference to scenario builder method
@@ -798,7 +1015,7 @@ public class SingleLinkedListTest {
 		iterator.add(ELEMENT_C);
 		return list;
 	}
-  	private Scenario<Integer> AB_listIteratorNextAddC_ACB = () -> AB_listIteratorNextAddC_ACB();
+  	
 
 	/*Scenario # 90 [A,B] -> list-iterator(2), previous(), add(C) -> [A,C,B]
  	 * 
@@ -810,7 +1027,7 @@ public class SingleLinkedListTest {
 		iterator.add(ELEMENT_C);
 		return list;
 	}
-	private Scenario<Integer> AB_listIterator2PreviousAddC_ACB = () -> AB_listIterator2PreviousAddC_ACB();
+
 
 	/*Scenario # 96 [A,B,C] -> list-iterator(1), next(), set(D) -> [A,D,C]
 	 * 
@@ -822,7 +1039,7 @@ public class SingleLinkedListTest {
 		iterator.set(ELEMENT_D);
 		return list;
 	}
-	private Scenario<Integer> ABC_listIterator1NextSetD_ADC = () -> ABC_listIterator1NextSetD_ADC();
+
 
 	/** Scenario #99: [A,B,C] -> list-iterator(2),previous(),set(D) -> [A,D,C]
 	 * @return [] after iterator, next(), remove(), next(), remove(), next(), remove()
@@ -834,7 +1051,7 @@ public class SingleLinkedListTest {
 		iterator.set(ELEMENT_D);
 		return list;
 	}
-	private Scenario<Integer> ABC_listIterator2PreviousSetD_ADC = () -> ABC_listIterator2PreviousSetD_ADC();
+	
 
 
 }
