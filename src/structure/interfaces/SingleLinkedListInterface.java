@@ -45,10 +45,10 @@ public interface SingleLinkedListInterface<T> {
     /**
      * Adds the specified new element after the specific element.
      *
-     * @param newElement the element to add after
-     * @param element the existing element
+     * @param element the element to add after
+     * @param target the existing element
      */
-    void addAfter(T newElement, T element);
+    void addAfter(T element, T target);
 
 
     /**
@@ -69,9 +69,9 @@ public interface SingleLinkedListInterface<T> {
      * Removes the first occurrence of the specified element from the list.
      *
      * @param element the element to be removed
-     * @return true if removal was successful, false otherwise
+     * @return the removed element
      */
-    boolean remove(T element);
+    T remove(T element);
 
 
     /**
@@ -88,10 +88,9 @@ public interface SingleLinkedListInterface<T> {
      * 
      * @param index the index of the element to replace
      * @param element the element to be stored at the specified position
-     * @return the element previously at the specified position
      * @throws IndexOutOfBoundsException if the index is out of range
      */
-    T set(int index, T element);
+    void set(int index, T element);
 
 
     /**
