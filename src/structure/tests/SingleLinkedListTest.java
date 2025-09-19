@@ -218,7 +218,7 @@ public class SingleLinkedListTest {
 
 	@Test
     void test_addAfter_singleElementList() {
-		singleElementList.add(ELEMENT_B, ELEMENT_A);
+		singleElementList.addAfter(ELEMENT_B, ELEMENT_A);
 
 		assertFalse(singleElementList.isEmpty(), "FAILED: isEmpty() for addAfter() on singleElementList");
         assertEquals(2, singleElementList.size(), "FAILED: size() for addAfter() on emptyList");

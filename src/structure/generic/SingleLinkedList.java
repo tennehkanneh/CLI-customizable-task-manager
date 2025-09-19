@@ -16,35 +16,30 @@ public class SingleLinkedList<T> implements SingleLinkedListInterface<T> {
 		size = 0;
 	}
 
-     @Override
+    @Override
     public void addToFront(T element) {
-        
         if (isEmpty()) {
             head = new LinearNode<T>(element);
+			tail = head;
         } else {
             LinearNode<T> retval = new LinearNode<T>(element);
             retval.setNext(head);
             head = retval;
         }
-
-        
+		size++;
     }
 
     @Override
     public void addToRear(T element) {
-		tail = new LinearNode<T>(element);
-		tail.setNext(null);
-		if (head == null){
-			head = tail;
+		if (head == null) {
+			head = new LinearNode<T>(element);
+			tail = head;
 		} else {
-			LinearNode<T> temp = head;
-			while(temp.getNext() != null){
-				 temp = temp.getNext();
-			}
+			LinearNode<T> temp = new LinearNode<T>(element);
+			tail.setNext(temp);
+			tail = temp;
 		}
 		size++;
-		
-        
     }
 
     @Override
@@ -308,7 +303,7 @@ public class SingleLinkedList<T> implements SingleLinkedListInterface<T> {
 
     @Override
     public boolean isEmpty() {
-        return size() == 0 || head == null || tail == null;
+        return size() == 0 && head == null;
     }
 
     @Override
@@ -325,18 +320,18 @@ public class SingleLinkedList<T> implements SingleLinkedListInterface<T> {
     @Override
     public String toString() {
         String list = "[";
-		LinearNode<T> current = head;
-
-        do {
-            list += current;
+		LinearNode<T> current = new LinearNode<T>();
+		current = head;
+		
+		while (current != null) {
+            list += current.getElement();
 
             if (current.getNext() != null) {
                 list += ", ";
             }
 
             current = current.getNext();
-
-        } while (current != null);
+        }
 		
 		list += "]";
 
