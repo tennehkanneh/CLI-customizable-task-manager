@@ -103,11 +103,10 @@ public interface SingleLinkedListInterface<T> {
     T get(int index);
 
     /**
-     * Replaces the element at the specified index with the specified element.
+     * Returns the index of the specfied element
      *
-     * @param index the index of the element to replace
-     * @param element the new element
-     * @throws IndexOutOfBoundsException if the index is out of range
+     * @param element the element
+     * @return index of element if in the list -1 if not in the list
      */
     int indexOf(T element);
 
@@ -119,7 +118,7 @@ public interface SingleLinkedListInterface<T> {
     T first();
 
     /**
-     * Returns the las element in the list.
+     * Returns the last element in the list.
      *
      * @return the last element
      */

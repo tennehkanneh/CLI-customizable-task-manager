@@ -1,5 +1,7 @@
 package src.structure.generic;
 
+import java.util.NoSuchElementException;
+
 import src.model.LinearNode;
 import src.structure.interfaces.SingleLinkedListInterface;
 
@@ -15,114 +17,307 @@ public class SingleLinkedList<T> implements SingleLinkedListInterface<T> {
 	
 	@Override
 	public void addToFront(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'addToFront'");
+		if (isEmpty()) {
+			head = new LinearNode<T>(element);
+			tail = head;
+		} else {
+			LinearNode<T> temp = new LinearNode<>(element);
+			
+			temp.setNext(head);
+			head = temp;
+		}
+
+		size++;
 	}
 
 	@Override
 	public void addToRear(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'addToRear'");
+		if (isEmpty()) {
+			tail = new LinearNode<T>(element);
+			head = tail;
+		} else {
+			LinearNode<T> temp = new LinearNode<>(element);
+			
+			tail.setNext(temp);
+			tail = temp;
+		}
+
+		size++;
 	}
 
 	@Override
 	public void add(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'add'");
+		addToRear(element);
+		
 	}
 
 	@Override
 	public void add(int index, T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'add'");
+		if (index < 0 || index > size()) { throw new IndexOutOfBoundsException(); }
+
+		if (isEmpty()) {
+			head = new LinearNode<T>(element);
+			tail = head;
+		} else {
+			LinearNode<T> current = head;
+
+			while (current != null) {
+				if (indexOf(current.getElement()) == index) {
+					LinearNode<T> temp = current;
+					temp.setNext(current);
+					temp.setElement(element);
+					size++;
+
+					if (indexOf(element) == size - 1) {
+						tail = temp;
+					}
+					
+					return;
+				}
+			}
+			
+		}
+
+		size++;
+		
 	}
 
 	@Override
 	public void addAfter(T element, T target) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'addAfter'");
+		if (!contains(target)) { throw new NoSuchElementException(); }
+
+		LinearNode<T> current = head;
+
+		while (current != null) {
+			if (current.getElement() == target){
+
+				LinearNode<T> temp = new LinearNode<T>(element);
+				temp.setNext(current.getNext());
+				current.setNext(temp);
+				size++;
+
+				if (indexOf(element) == size - 1) {
+					tail = temp;
+				}
+
+				return;
+			} else {
+				current = current.getNext();
+			}
+			
+		}
 	}
 
 	@Override
 	public T removeFirst() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'removeFirst'");
+		if (isEmpty()) { throw new NoSuchElementException(); }
+
+		LinearNode<T> temp = head;
+		head = head.getNext();
+		size--;
+
+		return temp.getElement();
 	}
 
 	@Override
 	public T removeLast() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'removeLast'");
+		if (isEmpty()) { throw new NoSuchElementException(); }
+
+		T element;
+
+		if (head == tail) {
+			element = head.getElement();
+			head = tail = null;
+			size--;
+
+			return element;
+		}
+		
+		LinearNode<T> current = head;
+		LinearNode<T> next = current.getNext();
+
+			
+		while (current.getNext() != null && next.getNext() != null) {
+			current = current.getNext();
+			next = next.getNext();
+		}
+
+		element = next.getElement();
+		next.setElement(null);
+		tail = current;
+		size--;
+
+		return element;
 	}
 
 	@Override
 	public T remove(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'remove'");
+		if (!contains(element)) { throw new  NoSuchElementException(); }
+
+		if (head == tail && head.getElement() == element) {
+			element = head.getElement();
+			head = tail = null;
+			size--;
+
+			return element;
+		}
+		
+		LinearNode<T> current = head;
+		LinearNode<T> next = current.getNext();
+
+			
+		while (current.getNext() != null && next.getNext() != null) {
+			if (next.getElement() == element) {
+				current.setNext(next.getNext());
+				next = null;
+				size--;
+				return element;
+
+			}
+		}
+
+		return element;
 	}
 
 	@Override
 	public T remove(int index) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'remove'");
+		if (isEmpty() || index < 0 || index > size()) { throw new  IndexOutOfBoundsException(); }
+
+		T element;
+		if (head == tail && indexOf(head.getElement()) == index) {
+			element = head.getElement();
+			head = tail = null;
+			size--;
+
+			return element;
+		}
+		
+		LinearNode<T> current = head;
+		LinearNode<T> next = current.getNext();
+
+			
+		while (current.getNext() != null && next.getNext() != null) {
+			if (indexOf(next.getElement()) == index) {
+				break;
+			}
+
+			current = current.getNext();
+			next = next.getNext();
+		}
+
+		element = next.getElement();
+		current.setNext(next.getNext());
+		next = null;
+
+		return element;
 	}
 
 	@Override
 	public void set(int index, T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'set'");
+		if (isEmpty() || index < 0 || index > size) { throw new IndexOutOfBoundsException(); }
+		
+		LinearNode<T> current = head;
+
+		while (current != null) {
+			if (indexOf(current.getElement()) == index) {
+				
+				current.setElement(element);
+			}
+			current = current.getNext();
+			
+		}
 	}
 
 	@Override
 	public T get(int index) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'get'");
+		if (isEmpty() || index < 0 || index > size) { throw new IndexOutOfBoundsException();}
+		
+		LinearNode<T> current = head;
+		T element = null;
+
+		while (current != null) {
+			if (indexOf(current.getElement()) == index) {
+				
+				element = current.getElement();
+				return element;
+			}
+			current = current.getNext();
+			
+		}
+
+		return element;
 	}
 
 	@Override
 	public int indexOf(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'indexOf'");
+		if (isEmpty()) { return NOT_FOUND; }
+
+		int index = 0;
+		LinearNode<T> current = head;
+
+		do {
+			
+			if (current.getElement() == element) {
+				return index;
+			}
+
+			current = current.getNext();
+			index++;
+		} while (!(index >= size));
+
+		return NOT_FOUND;
 	}
 
 	@Override
 	public T first() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'first'");
+		if (isEmpty()) { throw new NoSuchElementException(); }
+
+		return head.getElement();
 	}
 
 	@Override
 	public T last() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'last'");
+		if (isEmpty()) { throw new NoSuchElementException(); }
+
+		return tail.getElement();
 	}
 
 	@Override
 	public boolean contains(T element) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'contains'");
+		return indexOf(element) != NOT_FOUND;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+		return size() == 0;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'size'");
+		return size;
 	}
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'clear'");
+		head = tail = null;
+		size = 0;
 	}
 
 	public String toString() {
-		String list = "";
+		String list = "[";
+
+		LinearNode<T> current = head;
+		
+		while (current != null) {
+			list += current.getElement();
+
+			if (current.getNext() != null) {
+				list += ", ";
+			}
+			current = current.getNext();
+		}
+
+		list += "]";
 
 		return list;
 	}
