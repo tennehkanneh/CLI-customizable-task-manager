@@ -354,7 +354,7 @@ public class SingleLinkedListTest {
 
 	@Test
     void test_get0_singleElementList() {
-        assertEquals(ELEMENT_A, twoElementList.get(0));
+        assertEquals(ELEMENT_A, singleElementList.get(0));
 
 		assertFalse(singleElementList.isEmpty(), "FAILED: isEmpty() for get() on singleElementList");
         assertEquals(1, singleElementList.size(), "FAILED: size() for get() on singleElementList");
@@ -370,7 +370,7 @@ public class SingleLinkedListTest {
 
     @Test
     void test_indexOfA_singleElementList() {
-		assertEquals(0, emptyList.indexOf(ELEMENT_A), "FAILED: indexOf() on singleElementList");
+		assertEquals(0, singleElementList.indexOf(ELEMENT_A), "FAILED: indexOf() on singleElementList");
 
 		assertFalse(singleElementList.isEmpty(), "FAILED: isEmpty() for indexOf() on singleElementList");
         assertEquals(1, singleElementList.size(), "FAILED: size() for indexOf() on singleElementList");
@@ -381,12 +381,12 @@ public class SingleLinkedListTest {
 
 	@Test
     void test_indexOfX_singleElementList() {
-		assertEquals(-1, emptyList.indexOf(ELEMENT_X), "FAILED: indexOf() on singleElementList");
+		assertEquals(-1, singleElementList.indexOf(ELEMENT_X), "FAILED: indexOf() on singleElementList");
     }
 
 	@Test
     void test_containsA_singleElementList() {
-        assertEquals(emptyList.contains(ELEMENT_A), "FAILED: contains() singleElementList");
+        assertTrue(singleElementList.contains(ELEMENT_A), "FAILED: contains() singleElementList");
 
 		assertFalse(singleElementList.isEmpty(), "FAILED: isEmpty() for contains() on singleElementList");
         assertEquals(1, singleElementList.size(), "FAILED: size() for contains() on singleElementList");
@@ -397,7 +397,7 @@ public class SingleLinkedListTest {
 
 	@Test
     void test_containsX_singleElementList() {
-        assertEquals(false, emptyList.contains(ELEMENT_X), "FAILED: contains() singleElementList");
+        assertEquals(false, singleElementList.contains(ELEMENT_X), "FAILED: contains() singleElementList");
     }
 
     @Test
@@ -698,7 +698,7 @@ public class SingleLinkedListTest {
 
 	@Test
     void test_containsA_twoElementList() {
-        assertEquals(emptyList.contains(ELEMENT_A), "FAILED: contains() twoElementList");
+        assertTrue(twoElementList.contains(ELEMENT_A), "FAILED: contains() twoElementList");
 
 		assertFalse(twoElementList.isEmpty(), "FAILED: isEmpty() for contains() on twoElementList");
         assertEquals(2, twoElementList.size(), "FAILED: size() for contains() on twoElementList");
@@ -709,7 +709,7 @@ public class SingleLinkedListTest {
 
 	@Test
     void test_containsB_twoElementList() {
-        assertEquals(emptyList.contains(ELEMENT_B), "FAILED: contains() twoElementList");
+        assertTrue(twoElementList.contains(ELEMENT_B), "FAILED: contains() twoElementList");
 
 		assertFalse(twoElementList.isEmpty(), "FAILED: isEmpty() for contains() on twoElementList");
         assertEquals(2, twoElementList.size(), "FAILED: size() for contains() on twoElementList");
@@ -1060,7 +1060,7 @@ public class SingleLinkedListTest {
     
     @Test
     void test_indexOfA_threeElementList() {
-		assertEquals(0, emptyList.indexOf(ELEMENT_A), "FAILED: indexOf() on threeElementList");
+		assertEquals(0, threeElementList.indexOf(ELEMENT_A), "FAILED: indexOf() on threeElementList");
 
 		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for indexOf() on threeElementList");
         assertEquals(3, threeElementList.size(), "FAILED: size() for indexOf() on threeElementList");
@@ -1071,7 +1071,7 @@ public class SingleLinkedListTest {
     
 	@Test
     void test_indexOfB_threeElementList() {
-		assertEquals(1, emptyList.indexOf(ELEMENT_B), "FAILED: indexOf() on threeElementList");
+		assertEquals(1, threeElementList.indexOf(ELEMENT_B), "FAILED: indexOf() on threeElementList");
 
 		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for indexOf() on threeElementList");
         assertEquals(3, threeElementList.size(), "FAILED: size() for indexOf() on threeElementList");
@@ -1082,7 +1082,7 @@ public class SingleLinkedListTest {
    
 	@Test
     void test_indexOfC_threeElementList() {
-		assertEquals(2, emptyList.indexOf(ELEMENT_C), "FAILED: indexOf() on threeElementList");
+		assertEquals(2, threeElementList.indexOf(ELEMENT_C), "FAILED: indexOf() on threeElementList");
 
 		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for indexOf() on threeElementList");
         assertEquals(3, threeElementList.size(), "FAILED: size() for indexOf() on threeElementList");
@@ -1093,12 +1093,12 @@ public class SingleLinkedListTest {
  
 	@Test
     void test_indexOfX_threeElementList() {
-		assertEquals(-1, emptyList.indexOf(ELEMENT_X), "FAILED: indexOf() on threeElementList");
+		assertEquals(-1, threeElementList.indexOf(ELEMENT_X), "FAILED: indexOf() on threeElementList");
     }
     
 	@Test
     void test_containsA_threeElementList() {
-        assertEquals(emptyList.contains(ELEMENT_A), "FAILED: contains() threeElementList");
+        assertTrue(threeElementList.contains(ELEMENT_A), "FAILED: contains() threeElementList");
 
 		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for contains() on threeElementList");
         assertEquals(3, threeElementList.size(), "FAILED: size() for contains() on threeElementList");
@@ -1109,7 +1109,7 @@ public class SingleLinkedListTest {
     
 	@Test
     void test_containsB_threeElementList() {
-        assertEquals(emptyList.contains(ELEMENT_B), "FAILED: contains() threeElementList");
+        assertTrue(threeElementList.contains(ELEMENT_B), "FAILED: contains() threeElementList");
 
 		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for contains() on threeElementList");
         assertEquals(3, threeElementList.size(), "FAILED: size() for contains() on threeElementList");
@@ -1120,7 +1120,7 @@ public class SingleLinkedListTest {
      
 	@Test
     void test_containsC_threeElementList() {
-        assertEquals(emptyList.contains(ELEMENT_C), "FAILED: contains() threeElementList");
+        assertTrue(threeElementList.contains(ELEMENT_C), "FAILED: contains() threeElementList");
 
 		assertFalse(threeElementList.isEmpty(), "FAILED: isEmpty() for contains() on threeElementList");
         assertEquals(2, threeElementList.size(), "FAILED: size() for contains() on threeElementList");
@@ -1131,7 +1131,7 @@ public class SingleLinkedListTest {
    
 	@Test
     void test_containsX_threeElementList() {
-        assertEquals(false, emptyList.contains(ELEMENT_X), "FAILED: contains() threeElementList");
+        assertFalse(threeElementList.contains(ELEMENT_X), "FAILED: contains() threeElementList");
     }
 
     @Test
