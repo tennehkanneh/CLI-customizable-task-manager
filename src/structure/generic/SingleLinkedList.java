@@ -55,14 +55,17 @@ public class SingleLinkedList<T> implements SingleLinkedListInterface<T> {
 	public void add(int index, T element) {
 		if (index < 0 || index > size()) { throw new IndexOutOfBoundsException(); }
 
-		if (isEmpty()) {
-			head = new LinearNode<T>(element);
-			tail = head;
+		if (isEmpty() || index == 0) {
+			addToFront(element);
+			
 		} else {
 			LinearNode<T> current = head;
+			LinearNode<T> next = current.getNext();
 
-			while (current != null) {
-				if (indexOf(current.getElement()) == index) {
+
+
+			while (next != null) {
+				if (indexOf(next.getElement()) == index) {
 					LinearNode<T> temp = current;
 					temp.setNext(current);
 					temp.setElement(element);
@@ -71,7 +74,7 @@ public class SingleLinkedList<T> implements SingleLinkedListInterface<T> {
 					if (indexOf(element) == size - 1) {
 						tail = temp;
 					}
-					
+
 					return;
 				}
 			}
